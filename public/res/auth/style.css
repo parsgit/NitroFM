@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+body {
+
+    background: url("back.jpg")no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100vh;
+ 
+}
+.le-input{min-width: 100px;max-width: 250px;}
+.le-panel{min-width: 200px;max-width: 370px;}
