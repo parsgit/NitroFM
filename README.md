@@ -24,4 +24,4 @@ and sample : http://yourSiteName.com/nitrofm/install
  
  **License :  [Apache-2.0](https://github.com/parsgit/NitroFM/blob/master/LICENSE)**
 
-**Framework used : [fatfree framework (A powerful yet easy-to-use PHP micro-framework)](fatfreeframework.com)**
+**Framework used : [fatfree framework (A powerful yet easy-to-use PHP micro-framework)](https://fatfreeframework.com)**
