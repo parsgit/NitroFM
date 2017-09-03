@@ -14,7 +14,7 @@ $ mv NitroFM-master nitrofm
 ```
 and sample : http://yourSiteName.com/nitrofm/install
  >- 1.Create a mysql database for NitroFM
- >-  2.Complete the database information in to NitroFM installation
+ >-  2.Complete the database information in NitroFM installation
  >- 3.Create a new account for admin
  
  
