@@ -1,6 +1,8 @@
 # NitroFM
 Free and simple and lightweight  File Managar For Server or Website
 
+![NitroFM Screenshot](https://github.com/parsgit/NitroFM/blob/master/scr/Screenshot%20from%20NitroFM.png)
+
 how to Install linux server : 
 -
 in to terminal
