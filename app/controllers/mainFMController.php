@@ -74,7 +74,7 @@ class mainFMController {
 		$f3->set ( 'UPLOADS', $up_path ); // don't forget to set an Upload directory, and make it writable!
 		
 		$overwrite = true; // set to true, to overwrite an existing file; Default: false
-		$slug = true; // rename file to filesystem-friendly version
+		$slug = false; // rename file to filesystem-friendly version
 		
 		$a = $web->receive ( function ($file, $formFieldName) {
 			// var_dump($file);
