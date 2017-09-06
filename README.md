@@ -1,5 +1,5 @@
 # NitroFM
-Free and simple and lightweight  File Managar For Server or Website
+Free and simple and lightweight  File Manager For Server or Website
 
 ![NitroFM Screenshot](https://github.com/parsgit/NitroFM/blob/master/scr/Screenshot%20from%20NitroFM.png)
 
