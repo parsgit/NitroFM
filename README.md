@@ -17,7 +17,10 @@ and sample : http://yourSiteName.com/nitrofm/install
  >-  2.Complete the database information in NitroFM installation
  >- 3.Create a new account for admin
  
- 
+ if you see this problem > mkdir(): Permission denied
+ ```php
+ $ sudo chmod -R 777 /var/www
+ ```
  
  <br/><br/><br/>
  
