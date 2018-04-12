@@ -1,32 +1,28 @@
 <?php
 class mainFMController {
 	public function manage($f3) {
-		$isLogin = $f3->get ( 'isLogin' );
+		$isLogin = $f3->get ( 'SESSION.login' );
 		if (! $isLogin) {
 			$f3->reroute ( 'login' );
 			return;
 		}
 		echo \Template::instance ()->render ( 'main.html' );
 	}
-	
+
 	// routeing api
 	public function action($f3) {
-		$isLogin = $f3->get ( 'isLogin' );
+		$isLogin = $f3->get ( 'SESSION.login' );
 		if (! $isLogin) {
 			$f3->reroute ( '../login' );
 			return;
 		}
-		$db = $f3->get ( 'DB' );
-		
 		// just create an object
-		new \DB\SQL\Session ( $db );
-		
 		$path = $f3->get ( 'SESSION.path' );
 		if ($path == null) {
 			$path = getcwd ();
 			$f3->set ( 'SESSION.path', $path );
 		}
-		
+
 		switch ($f3->get ( 'PARAMS.action', '' )) {
 			case 'get_dir_list' :
 				$this->get_dir_list ( $path );
@@ -63,7 +59,7 @@ class mainFMController {
 				break;
 		}
 	}
-	
+
 	public function upload_file($f3, $path) {
 		$web = \Web::instance ();
 		if (mb_substr ( $path, (mb_strlen ( $path ) - 1), mb_strlen ( $path ) ) != "/") {
@@ -72,28 +68,28 @@ class mainFMController {
 			$up_path = $path;
 		}
 		$f3->set ( 'UPLOADS', $up_path ); // don't forget to set an Upload directory, and make it writable!
-		
+
 		$overwrite = true; // set to true, to overwrite an existing file; Default: false
 		$slug = false; // rename file to filesystem-friendly version
-		
+
 		$a = $web->receive ( function ($file, $formFieldName) {
 			// var_dump($file);
 			// maybe you want to check the file size
 			if ($file ['size'] > (9 * 1024 * 1024)) // if bigger than 2 MB
 				return false; // this file is not valid, return false will skip moving it
-				              
+
 			// everything went fine, hurray!
 			return true; // allows the file to be moved from php tmp dir to your defined upload dir
 		}, $overwrite, $slug );
-		
+
 		$result ['ok'] = true;
 		$result ['data'] = $a;
 		$result ['list'] = $this->get_dir_list ( $path, true );
 		echo json_encode ( $result );
 	}
-	
+
 	public function download_a_file($f3,$path){
-		
+
 		$filename= $f3->get ( 'GET.name', null );
 		if ($filename==null){
 			$result['ok']=false;
@@ -102,8 +98,8 @@ class mainFMController {
 			echo json_encode( $result);
 			return ;
 		}
-		
-		
+
+
 		header('Content-Description: File Transfer');
 		header('Content-Type: application/octet-stream');
 		header('Content-Disposition: attachment; filename="'.basename("$path/$filename").'"');
@@ -113,20 +109,20 @@ class mainFMController {
 		header('Content-Length: ' . filesize("$path/$filename"));
 		readfile("$path/$filename");
 		exit;
-		
+
 	}
-	
+
 	// set default path
 	public function resetpath($f3) {
 		$path = getcwd ();
 		$f3->set ( 'SESSION.path', $path );
 		$this->get_dir_list ( $path );
 	}
-	
+
 	// get file and dir list of name in path
 	public function get_dir_list($path, $return_value = false) {
 		$scan = scandir ( $path );
-		
+
 		// File and folder separation
 		foreach ( $scan as $key => $value ) {
 			if ($value != '.' && $value != '..') {
@@ -140,14 +136,14 @@ class mainFMController {
 		$list ['dirs'] = $dirs;
 		$list ['files'] = $files;
 		$list ['path'] = $path;
-		
+
 		if (! $return_value) {
 			echo json_encode ( $list );
 		} else {
 			return $list;
 		}
 	}
-	
+
 	// open dir
 	public function cd_to($f3, $path) {
 		$dir = $f3->get ( 'GET.dir', null );
@@ -158,7 +154,7 @@ class mainFMController {
 				$path = $user_path;
 			}
 		} else {
-			
+
 			if ($dir != '..' && is_dir ( $path . '/' . $dir )) {
 				$path .= '/' . $dir;
 				$f3->set ( 'SESSION.path', $path );
@@ -171,13 +167,13 @@ class mainFMController {
 						$path .= '/';
 					}
 				}
-				
+
 				if (is_dir ( $path . '/' . $dir )) {
 					$f3->set ( 'SESSION.path', $path );
 				}
 			}
 		}
-		
+
 		// clear path
 		if (strpos ( $path, '//' ) > - 1) {
 			$path = str_replace ( '//', '/', $path );
@@ -185,7 +181,7 @@ class mainFMController {
 		}
 		$this->get_dir_list ( $path );
 	}
-	
+
 	// Delete a file or dir
 	public function del($f3, $path, $name) {
 		if (! is_null ( $name )) {
@@ -200,9 +196,9 @@ class mainFMController {
 				$result ['msg'] = 'Not Directory Permission';
 			} else {
 				if (is_dir ( $path . '/' . $name )) {
-					
+
 					$this->delTree(( $path . '/' . $name));
-					
+
 					//rmdir ( $path . '/' . $name );
 				} else {
 					unlink ( $path . '/' . $name );
@@ -218,75 +214,71 @@ class mainFMController {
 	function delTree($dir)
 	{
 		$files = array_diff(scandir($dir), array('.', '..'));
-		
+
 		foreach ($files as $file) {
 			(is_dir("$dir/$file")) ? $this->delTree("$dir/$file") : unlink("$dir/$file");
 		}
-		
+
 		return rmdir($dir);
-	} 
+	}
 	// Delete the list of files
 	public function delete_dir($f3, $path) {
 		$names = $f3->get ( 'POST.names', null ); // get a list of names for delete
-		
+
 		$count = 0;
-		
+
 		foreach ( $names as $key => $name ) {
 			$del_result = $this->del ( $f3, $path, $name );
 			$result ['log'] = $del_result; // show log in browser console
 			$count ++;
 		}
-		
+
 		$result ['ok'] = true;
 		$result ['msg'] = "$count Item Deleted";
 		$result ['list'] = $this->get_dir_list ( $path, true );
-		
+
 		echo (json_encode ( $result ));
 	}
-	
+
 	// Create New directory
 	public function new_directory($f3, $path) {
 		$name = $f3->get ( 'GET.name', null );
 		mkdir ( "$path/$name", 0700 );
-		
+
 		$this->get_dir_list ( $path );
 	}
-	
+
 	// unzip files
 	public function unzip($f3, $path) {
 		$names = $f3->get ( 'GET.names', null );
-		/*
-		foreach ($names as $key => $name) {
-			system('unzip -d  '."$path $path/$name");
-		}*/
-		
+
 		require_once  ( __DIR__ . "/lib/zip/Zip.php");
-		
+
 		$zip = new Zip();
-		
+
 		foreach ($names as $key => $name) {
 			$zip->unzip_file("$path/$name");
 			$zip->unzip_to("$path");
 			echo $name." \n";
 		}
-		
-		
+
+
 	}
-	
+
 	public function zip($f3, $path,$names=null){
 		if ($names==null){
 		$names = $f3->get ( 'GET.names', null );
 		}
-		
+
 		require_once  ( __DIR__ . "/lib/zip/Zip.php");
 
 		$zip = new Zip();
 		$zip->zip_start( "$path/"."$names[0].zip");
-		
+
 		foreach ($names as $key=>$name){
 			$zip->zip_add("$path/$name"); // adding a file
 		}
-		
+
 		$zip->zip_end();
 		return "$path/"."$names[0].zip";
 	}

@@ -3,7 +3,6 @@ function generate_list(json) {
   checkbox_id=0;
   $( "#list_content" ).empty();
   $("#path_input").val(json.path);
-  //$("#list_content").append(get_dir_html('fordir'));
   if (json.dirs != null)
   for (var i = 0; i < json.dirs.length; i++) {
     checkbox_id++;
@@ -17,18 +16,18 @@ function generate_list(json) {
 document.getElementById('path_input').focus();
 }
 function get_file_html(name) {
-  return '<div class="panel panel-default" style="margin: 0px; ">'+
+  return '<div class="panel panel-default colorx" style="margin: 0px; ">'+
     '<div class="panel-body" style="padding : 0px; ">'+
 
       '<label style="width: 100%;">'+
         '<div class="row" style="margin-top: 3px; margin-bottom: -5px;">'+
-          '<div class="col-xs-1 text-center" >'+
+          '<div class="col-xs-1 text-center " >'+
             '<input id="f_'+checkbox_id+'" value="'+name+'" type="checkbox">'+
           '</div>'+
-        '<div class="col-xs-1 ">'+
-            '<span class="glyphicon glyphicon-file" style="color:chocolate;" aria-hidden="true"></span>'+
+        '<div class="col-xs-1 vc-tr">'+
+            '<span class="glyphicon glyphicon-file" style="color: #ffc800;" aria-hidden="true"></span>'+
           '</div>'+
-          '<div class="col-xs-8">'+
+          '<div class="col-xs-8 vc-tr">'+
             name+
           '</div>'+
         '</div>'+
@@ -38,23 +37,23 @@ function get_file_html(name) {
 
 }
 function get_dir_html(name) {
-  return '<div class="panel panel-default" style="margin: 0px; ">'+
+  return '<div class="panel panel-default colorx" style="margin: 0px; ">'+
     '<div class="panel-body" style="padding : 0px; ">'+
 
       '<label style="width: 100%;">'+
         '<div class="row" style="margin-top: 3px; margin-bottom: -5px;">'+
-          '<div class="col-xs-1 text-center" >'+
+          '<div class="col-xs-1 text-center vc-tr" >'+
             '<input id="f_'+checkbox_id+'" value="'+name+'" type="checkbox">'+
           '</div>'+
-        '<div class="col-xs-1 ">'+
-            '<span class="glyphicon glyphicon-folder-open" style="color:blue;" aria-hidden="true"></span>'+
+        '<div class="col-xs-1 vc-tr">'+
+            '<span class="glyphicon glyphicon-folder-open" style="color: white;" aria-hidden="true"></span>'+
           '</div>'+
-          '<div class="col-xs-8">'+
+          '<div class="col-xs-8 vc-tr">'+
             name+
           '</div>'+
           '<div class="col-xs-2">'+
-            '<button value="'+name+'" id="open_dir" class="open_dirs" >'+
-              '<span  class="glyphicon glyphicon-log-in" aria-hidden="true"></span>'+
+            '<button value="'+name+'"style="background:white;" id="open_dir" class="btn open_dirs" >'+
+              '<span style="color:cadetblue;"  class="glyphicon glyphicon-log-in" aria-hidden="true"></span>'+
             '</button>'+
           '</div>'+
         '</div>'+
