@@ -12,6 +12,7 @@ $ wget https://github.com/parsgit/NitroFM/archive/master.zip
 $ unzip master.zip
 $ mv NitroFM-master nitrofm
 ```
+>  http://localhost/nitrofm
 
 # Change username and password
 Open the "config.ini" file and change the username and password 
