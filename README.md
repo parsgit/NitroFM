@@ -27,7 +27,6 @@ Open the "config.ini" file and change the username and password
  ```
  
  <br/>
- [I'm an inline-style link](https://www.google.com)
 
  [Apache-2.0](https://github.com/parsgit/NitroFM/blob/master/LICENSE)
  <br/>
