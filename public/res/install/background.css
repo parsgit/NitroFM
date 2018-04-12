@@ -1,0 +1,12 @@
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cedbe9+0,aac5de+17,6199c7+50,3a84c3+51,419ad6+59,4bb8f0+71,3a8bc2+84,26558b+100;Blue+Gloss */
+.bk{
+background:-webkit-gradient(linear, 100% 20%, 30% 32%, from(#745AA4), to(#D36328))
+	}
+.bk-hpanel2{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e6f0a3+0,58bf2f+45,3ba01c+62,256b1d+100 */
+background: rgb(230,240,163); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(230,240,163,1) 0%, rgba(88,191,47,1) 45%, rgba(59,160,28,1) 62%, rgba(37,107,29,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(230,240,163,1) 0%,rgba(88,191,47,1) 45%,rgba(59,160,28,1) 62%,rgba(37,107,29,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(230,240,163,1) 0%,rgba(88,191,47,1) 45%,rgba(59,160,28,1) 62%,rgba(37,107,29,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6f0a3', endColorstr='#256b1d',GradientType=0 ); /* IE6-9 */
+	}
