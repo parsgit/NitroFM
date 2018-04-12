@@ -27,6 +27,8 @@ Open the "config.ini" file and change the username and password
  ```
  
  <br/>
- License :  [Apache-2.0](https://github.com/parsgit/NitroFM/blob/master/LICENSE) 
+ [I'm an inline-style link](https://www.google.com)
+
+ [Apache-2.0](https://github.com/parsgit/NitroFM/blob/master/LICENSE)
  <br/>
- Framework used : [fatfree framework (A powerful yet easy-to-use PHP micro-framework)](https://fatfreeframework.com)
+ [fatfree framework](https://fatfreeframework.com)
