@@ -16,9 +16,9 @@ $ mv NitroFM-master nitrofm
 # Change username and password
 Open the "config.ini" file and change the username and password 
 
- > dbUsername="admin";
+ > dbUsername="admin"
  
- > dbPassword="1234";
+ > dbPassword="1234"
 
  <br/><br/><br/>
  if you see this problem > mkdir(): Permission denied
