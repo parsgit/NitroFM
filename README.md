@@ -21,11 +21,7 @@ Open the "config.ini" file and change the username and password
  
  > dbPassword="1234"
 
- <br/><br/><br/>
- if you see this problem > mkdir(): Permission denied
- ```php
- $ sudo chmod -R 777 /var/www
- ```
+ <br/>
  
  <br/>
 
