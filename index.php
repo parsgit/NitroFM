@@ -1,5 +1,6 @@
 <?php
 
+ini_set('session.save_path', '/var/lib/php/session/')
 // Kickstart the framework
 $f3=require('lib/base.php');
 $f3 = Base::instance();
